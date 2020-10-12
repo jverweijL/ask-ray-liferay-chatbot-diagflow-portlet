@@ -1,3 +1,4 @@
 .gradle/
 build/
 update.sh
+/src/main/resources/*.json

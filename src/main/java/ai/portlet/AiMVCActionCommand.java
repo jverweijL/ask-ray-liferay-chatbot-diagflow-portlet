@@ -74,7 +74,7 @@ public class AiMVCActionCommand  extends BaseMVCActionCommand {
 	public String getAccessToken() throws IOException {
 		String accessToken =  null;
 		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-		InputStream stream = classloader.getResourceAsStream("liferay-onhm-1c5c15d292d4.json");
+		InputStream stream = classloader.getResourceAsStream("demoagent-n9lk-87cbc19a8f79.json");
 		List<String> scopes = Arrays.asList("https://www.googleapis.com/auth/cloud-platform", "https://www.googleapis.com/auth/dialogflow"); 
 		GoogleCredential credentials = GoogleCredential.fromStream(stream).createScoped(scopes);
 		credentials.refreshToken();
@@ -103,7 +103,7 @@ public class AiMVCActionCommand  extends BaseMVCActionCommand {
 		defaultClientConfig.getClasses().add(StringProvider.class);
 		Client client = Client.create(defaultClientConfig);
 		String conversationSession = actionRequest.getPortletSession().getId();
-		System.out.println("We are good 1");
+		System.out.println("We are good " + conversationSession);
 		WebResource webResource = client.resource("https://dialogflow.googleapis.com/v2/projects/" + dialogflowAgent + "/agent/sessions/" + conversationSession + ":detectIntent");
        	String input = "{\"query_input\": {\"text\": {\"text\":\"" + yourQuery + "\",  \"language_code\": \"en-US\" }}}";
       	ClientResponse response = webResource.header("Content-Type", "application/json").header("Authorization", "Bearer " + authtoken).post(ClientResponse.class, input);  
@@ -118,9 +118,11 @@ public class AiMVCActionCommand  extends BaseMVCActionCommand {
 		
 		
 		try {
+			System.out.println("What about response " + response);
 			json = (JSONObject) parser.parse(response.getEntity(String.class));
 			JSONObject jsonRes = (JSONObject) json.get("queryResult");
-			result = jsonRes.toString();	
+			System.out.println("are we good? " + jsonRes);
+			//result = jsonRes.toString();
 			//get the action sometimes known as the intent
 			action = (String) jsonRes.get("action");
 			fulfillment = (String) jsonRes.get("action");
