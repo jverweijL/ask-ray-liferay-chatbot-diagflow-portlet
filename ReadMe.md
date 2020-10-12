@@ -8,7 +8,7 @@ I might make this module and other modules in this family better, but this is no
 ## DialogFlow and Google OAuth2.0 service account authentication
 
 The chatbot now uses the V2 version of Google's Dialogflow API which requires OAuth2.0 service account authentication. You must deploy
-the **[org.apache.servicemix.bundles.gae-1.9.81_1.jar](https://repo1.maven.org/maven2/org/apache/servicemix/bundles/org.apache.servicemix.bundles.gae/1.9.81_1/org.apache.servicemix.bundles.gae-1.9.81_1.jar)** to Liferay to satisfy this modules dependencies. All other dependencies are satisfied by Liferay
+the **org.apache.servicemix.bundles.gae-1.9.81_1.jar** to Liferay to satisfy this modules dependencies. All other dependencies are satisfied by Liferay
 default or as compileInclude.
 
 Because the module uses Google Service account authentication you need to add your json service account file e.g liferay-onhm-1c5c15d292d4.json to /src/main/resources.
